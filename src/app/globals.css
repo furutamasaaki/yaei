@@ -1,26 +1,50 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* カラーパレット */
+  --color-yaei-dark: #0C0F0A;
+  --color-yaei-surface: #1C2418;
+  --color-yaei-gold: #D4A853;
+  --color-yaei-gold-hover: #E0B96A;
+  --color-yaei-green: #4A7C59;
+  --color-yaei-green-light: #6B9E7A;
+  --color-yaei-rust: #A0522D;
+  --color-yaei-text: #E8E4DC;
+  --color-yaei-text-secondary: #9A9688;
+  --color-yaei-cream: #F5F0E8;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* フォント */
+  --font-heading: var(--font-noto-serif-jp), serif;
+  --font-heading-en: var(--font-cormorant-garamond), serif;
+  --font-body: var(--font-zen-kaku-gothic-new), sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-yaei-dark);
+  color: var(--color-yaei-text);
+  font-family: var(--font-body);
+}
+
+/* 等高線パターン装飾用 */
+.contour-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 50 Q25 30 50 50 Q75 70 100 50' fill='none' stroke='%234A7C59' stroke-opacity='0.08' stroke-width='1'/%3E%3Cpath d='M0 70 Q25 50 50 70 Q75 90 100 70' fill='none' stroke='%234A7C59' stroke-opacity='0.05' stroke-width='1'/%3E%3Cpath d='M0 30 Q25 10 50 30 Q75 50 100 30' fill='none' stroke='%234A7C59' stroke-opacity='0.05' stroke-width='1'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+/* スクロールバースタイル */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-yaei-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-yaei-surface);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-yaei-green);
 }

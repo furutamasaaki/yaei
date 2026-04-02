@@ -1,0 +1,67 @@
+export interface Prefecture {
+  code: string;
+  name: string;
+  name_en: string;
+  region: string;
+}
+
+export const REGIONS = [
+  "北海道",
+  "東北",
+  "関東",
+  "中部",
+  "近畿",
+  "中国",
+  "四国",
+  "九州・沖縄",
+] as const;
+
+export const PREFECTURES: Prefecture[] = [
+  { code: "01", name: "北海道", name_en: "hokkaido", region: "北海道" },
+  { code: "02", name: "青森県", name_en: "aomori", region: "東北" },
+  { code: "03", name: "岩手県", name_en: "iwate", region: "東北" },
+  { code: "04", name: "宮城県", name_en: "miyagi", region: "東北" },
+  { code: "05", name: "秋田県", name_en: "akita", region: "東北" },
+  { code: "06", name: "山形県", name_en: "yamagata", region: "東北" },
+  { code: "07", name: "福島県", name_en: "fukushima", region: "東北" },
+  { code: "08", name: "茨城県", name_en: "ibaraki", region: "関東" },
+  { code: "09", name: "栃木県", name_en: "tochigi", region: "関東" },
+  { code: "10", name: "群馬県", name_en: "gunma", region: "関東" },
+  { code: "11", name: "埼玉県", name_en: "saitama", region: "関東" },
+  { code: "12", name: "千葉県", name_en: "chiba", region: "関東" },
+  { code: "13", name: "東京都", name_en: "tokyo", region: "関東" },
+  { code: "14", name: "神奈川県", name_en: "kanagawa", region: "関東" },
+  { code: "15", name: "新潟県", name_en: "niigata", region: "中部" },
+  { code: "16", name: "富山県", name_en: "toyama", region: "中部" },
+  { code: "17", name: "石川県", name_en: "ishikawa", region: "中部" },
+  { code: "18", name: "福井県", name_en: "fukui", region: "中部" },
+  { code: "19", name: "山梨県", name_en: "yamanashi", region: "中部" },
+  { code: "20", name: "長野県", name_en: "nagano", region: "中部" },
+  { code: "21", name: "岐阜県", name_en: "gifu", region: "中部" },
+  { code: "22", name: "静岡県", name_en: "shizuoka", region: "中部" },
+  { code: "23", name: "愛知県", name_en: "aichi", region: "中部" },
+  { code: "24", name: "三重県", name_en: "mie", region: "近畿" },
+  { code: "25", name: "滋賀県", name_en: "shiga", region: "近畿" },
+  { code: "26", name: "京都府", name_en: "kyoto", region: "近畿" },
+  { code: "27", name: "大阪府", name_en: "osaka", region: "近畿" },
+  { code: "28", name: "兵庫県", name_en: "hyogo", region: "近畿" },
+  { code: "29", name: "奈良県", name_en: "nara", region: "近畿" },
+  { code: "30", name: "和歌山県", name_en: "wakayama", region: "近畿" },
+  { code: "31", name: "鳥取県", name_en: "tottori", region: "中国" },
+  { code: "32", name: "島根県", name_en: "shimane", region: "中国" },
+  { code: "33", name: "岡山県", name_en: "okayama", region: "中国" },
+  { code: "34", name: "広島県", name_en: "hiroshima", region: "中国" },
+  { code: "35", name: "山口県", name_en: "yamaguchi", region: "中国" },
+  { code: "36", name: "徳島県", name_en: "tokushima", region: "四国" },
+  { code: "37", name: "香川県", name_en: "kagawa", region: "四国" },
+  { code: "38", name: "愛媛県", name_en: "ehime", region: "四国" },
+  { code: "39", name: "高知県", name_en: "kochi", region: "四国" },
+  { code: "40", name: "福岡県", name_en: "fukuoka", region: "九州・沖縄" },
+  { code: "41", name: "佐賀県", name_en: "saga", region: "九州・沖縄" },
+  { code: "42", name: "長崎県", name_en: "nagasaki", region: "九州・沖縄" },
+  { code: "43", name: "熊本県", name_en: "kumamoto", region: "九州・沖縄" },
+  { code: "44", name: "大分県", name_en: "oita", region: "九州・沖縄" },
+  { code: "45", name: "宮崎県", name_en: "miyazaki", region: "九州・沖縄" },
+  { code: "46", name: "鹿児島県", name_en: "kagoshima", region: "九州・沖縄" },
+  { code: "47", name: "沖縄県", name_en: "okinawa", region: "九州・沖縄" },
+];
