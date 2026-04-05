@@ -35,7 +35,18 @@
       "Bash(chmod +x /Users/furuta_masaaki/Downloads/crowdworks-agent-extracted/crowdworks-agent/scripts/agent-ctl.sh)",
       "Bash(echo $!)",
       "Bash(./scripts/agent-ctl.sh restart:*)",
-      "Bash(ls -la /Users/furuta_masaaki/Downloads/crowdworks-agent-extracted/crowdworks-agent/data/screenshots/apply-*)"
+      "Bash(ls -la /Users/furuta_masaaki/Downloads/crowdworks-agent-extracted/crowdworks-agent/data/screenshots/apply-*)",
+      "Bash(npx tsc:*)",
+      "Bash(scripts/test-apply-single.ts:*)",
+      "Bash(sqlite3 /Users/furuta_masaaki/Downloads/crowdworks-agent-extracted/crowdworks-agent/data/crowdworks-agent.db \"SELECT status, count\\(*\\) FROM jobs GROUP BY status;\")",
+      "Bash(sqlite3 /Users/furuta_masaaki/Downloads/crowdworks-agent-extracted/crowdworks-agent/data/crowdworks-agent.db \".tables\")",
+      "Bash(ls -la /Users/furuta_masaaki/Downloads/crowdworks-agent-extracted/crowdworks-agent/data/*.db)",
+      "Bash(file /Users/furuta_masaaki/Downloads/crowdworks-agent-extracted/crowdworks-agent/data/*.db)",
+      "Bash(sqlite3 /Users/furuta_masaaki/Downloads/crowdworks-agent-extracted/crowdworks-agent/data/agent.db \"SELECT status, count\\(*\\) FROM jobs GROUP BY status;\")",
+      "Bash(sqlite3 /Users/furuta_masaaki/Downloads/crowdworks-agent-extracted/crowdworks-agent/data/agent.db \"SELECT id, title, score, status FROM jobs WHERE status=''applied'' ORDER BY score DESC LIMIT 15;\")",
+      "Bash(sqlite3 /Users/furuta_masaaki/Downloads/crowdworks-agent-extracted/crowdworks-agent/data/agent.db \"UPDATE jobs SET status=''proposal_ready'' WHERE status=''applied'' AND proposal_text IS NOT NULL AND score >= 66;\")",
+      "Bash(sqlite3 /Users/furuta_masaaki/Downloads/crowdworks-agent-extracted/crowdworks-agent/data/agent.db \":*)",
+      "Bash(sqlite3 /Users/furuta_masaaki/Downloads/crowdworks-agent-extracted/crowdworks-agent/data/agent.db \".schema jobs\")"
     ]
   }
 }

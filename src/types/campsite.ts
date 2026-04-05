@@ -31,6 +31,7 @@ export interface Campsite {
   is_free: boolean;
   price_range: string;
   official_url: string | null;
+  reservation_url: string | null;
   status: CampsiteStatus;
   source: CampsiteSource;
   verified_at: string | null;

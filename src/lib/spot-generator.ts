@@ -413,6 +413,7 @@ export function generateSpots(startId: number, count: number): CampsiteWithAttri
       is_free: isFree,
       price_range: priceRanges,
       official_url: campType === "managed" && rand() > 0.3 ? `https://${slug}.example.jp/` : null,
+      reservation_url: campType === "managed" && rand() > 0.5 ? `https://www.nap-camp.com/search?q=${encodeURIComponent(spotName)}` : null,
       status: "active",
       source: "manual",
       verified_at: null,

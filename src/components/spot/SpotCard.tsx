@@ -54,6 +54,11 @@ export default function SpotCard({ spot, compact = false }: SpotCardProps) {
           >
             {spot.is_free ? "無料" : spot.price_range}
           </span>
+          {spot.reservation_url && (
+            <span className="text-[10px] px-1.5 py-0.5 rounded border border-yaei-gold/30 text-yaei-gold bg-yaei-gold/10">
+              予約可
+            </span>
+          )}
         </div>
 
         {/* 属性タグ（コンパクトでなければ表示） */}

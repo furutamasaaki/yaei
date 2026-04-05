@@ -248,6 +248,37 @@ export default async function SpotPage({ params }: SpotPageProps) {
 
         {/* 右カラム: サイドバー */}
         <div className="space-y-6">
+          {/* 予約CTA */}
+          {(spot.reservation_url || spot.official_url) && !spot.is_free && (
+            <div className="bg-yaei-surface border border-yaei-gold/20 rounded-lg p-5">
+              <p className="text-sm text-yaei-text-secondary mb-3">
+                {spot.is_free ? "無料で利用可能" : spot.price_range}
+              </p>
+              {spot.reservation_url ? (
+                <a
+                  href={spot.reservation_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full bg-yaei-gold hover:bg-yaei-gold-hover text-yaei-dark font-bold py-3 rounded-lg text-center transition-colors"
+                >
+                  予約サイトを開く
+                </a>
+              ) : spot.official_url ? (
+                <a
+                  href={spot.official_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full bg-yaei-gold hover:bg-yaei-gold-hover text-yaei-dark font-bold py-3 rounded-lg text-center transition-colors"
+                >
+                  公式サイトで予約
+                </a>
+              ) : null}
+              <p className="text-xs text-yaei-text-secondary mt-2 text-center">
+                外部サイトに移動します
+              </p>
+            </div>
+          )}
+
           {/* 基本情報カード */}
           <div className="bg-yaei-surface border border-yaei-green/10 rounded-lg p-5">
             <h3 className="font-heading font-bold text-yaei-text mb-4">基本情報</h3>
