@@ -30,7 +30,12 @@
       "Bash(npx tsx --eval \":*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(pkill -f \"tsx src/main.ts schedule\")",
+      "Bash(chmod +x /Users/furuta_masaaki/Downloads/crowdworks-agent-extracted/crowdworks-agent/scripts/agent-ctl.sh)",
+      "Bash(echo $!)",
+      "Bash(./scripts/agent-ctl.sh restart:*)",
+      "Bash(ls -la /Users/furuta_masaaki/Downloads/crowdworks-agent-extracted/crowdworks-agent/data/screenshots/apply-*)"
     ]
   }
 }
