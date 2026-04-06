@@ -11,6 +11,8 @@ import {
   BUGS_LEVEL_LABELS,
   NOISE_LEVEL_LABELS,
   SEASON_LABELS,
+  LEGAL_STATUS_LABELS,
+  LEGAL_STATUS_DESCRIPTIONS,
 } from "@/constants/filters";
 
 interface AttributeGridProps {
@@ -18,8 +20,50 @@ interface AttributeGridProps {
 }
 
 export default function AttributeGrid({ attributes }: AttributeGridProps) {
+  const legalStatusColors: Record<string, string> = {
+    authorized: "text-yaei-green-light",
+    public_riverbed: "text-yaei-green-light",
+    national_forest: "text-yaei-green-light",
+    natural_park_regular: "text-yaei-gold",
+    natural_park_special: "text-red-400",
+    private_permitted: "text-yaei-green-light",
+    unconfirmed: "text-yaei-gold",
+    unknown: "text-yaei-text-secondary",
+  };
+
+  const legalBgColors: Record<string, string> = {
+    authorized: "bg-yaei-green/10 border-yaei-green/20",
+    public_riverbed: "bg-yaei-green/10 border-yaei-green/20",
+    national_forest: "bg-yaei-green/10 border-yaei-green/20",
+    natural_park_regular: "bg-yaei-gold/10 border-yaei-gold/20",
+    natural_park_special: "bg-red-500/10 border-red-500/20",
+    private_permitted: "bg-yaei-green/10 border-yaei-green/20",
+    unconfirmed: "bg-yaei-gold/10 border-yaei-gold/20",
+    unknown: "bg-yaei-surface border-yaei-green/10",
+  };
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {/* 法的ステータス（全幅） */}
+      {attributes.legal_status && attributes.legal_status !== "unknown" && (
+        <div className={`md:col-span-2 rounded-lg p-4 border ${legalBgColors[attributes.legal_status]}`}>
+          <div className="flex items-center gap-2 mb-2">
+            <span className={`text-sm font-bold ${legalStatusColors[attributes.legal_status]}`}>
+              {attributes.legal_status === "natural_park_special" ? "⚠ " : attributes.legal_status === "unconfirmed" ? "△ " : "✓ "}
+              {LEGAL_STATUS_LABELS[attributes.legal_status]}
+            </span>
+          </div>
+          <p className="text-xs text-yaei-text-secondary leading-relaxed">
+            {LEGAL_STATUS_DESCRIPTIONS[attributes.legal_status]}
+          </p>
+          {attributes.legal_note && (
+            <p className="text-xs text-yaei-text mt-2 border-t border-yaei-green/10 pt-2">
+              {attributes.legal_note}
+            </p>
+          )}
+        </div>
+      )}
+
       {/* 設備・ルール */}
       <AttributeSection title="設備・ルール">
         <AttributeRow

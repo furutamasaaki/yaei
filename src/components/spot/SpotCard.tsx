@@ -46,7 +46,7 @@ export default function SpotCard({ spot, compact = false }: SpotCardProps) {
         </p>
 
         {/* 料金 */}
-        <div className="flex items-center gap-2 mb-2">
+        <div className="flex items-center gap-2 mb-2 flex-wrap">
           <span
             className={`text-xs font-bold ${
               spot.is_free ? "text-yaei-gold" : "text-yaei-text-secondary"
@@ -57,6 +57,16 @@ export default function SpotCard({ spot, compact = false }: SpotCardProps) {
           {spot.reservation_url && (
             <span className="text-[10px] px-1.5 py-0.5 rounded border border-yaei-gold/30 text-yaei-gold bg-yaei-gold/10">
               予約可
+            </span>
+          )}
+          {spot.attributes?.legal_status === "natural_park_special" && (
+            <span className="text-[10px] px-1.5 py-0.5 rounded border border-red-500/30 text-red-400 bg-red-500/10">
+              ⚠ 指定地のみ
+            </span>
+          )}
+          {spot.attributes?.legal_status === "unconfirmed" && (
+            <span className="text-[10px] px-1.5 py-0.5 rounded border border-yaei-gold/30 text-yaei-gold bg-yaei-gold/10">
+              △ 要確認
             </span>
           )}
         </div>

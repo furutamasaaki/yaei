@@ -13,6 +13,7 @@ export type StarGazingType = "excellent" | "good" | "average" | "poor" | "unknow
 export type BugsLevel = "low" | "medium" | "high" | "unknown";
 export type NoiseLevel = "silent" | "quiet" | "moderate" | "noisy" | "unknown";
 export type Season = "spring" | "summer" | "autumn" | "winter";
+export type LegalStatusType = "authorized" | "public_riverbed" | "national_forest" | "natural_park_regular" | "natural_park_special" | "private_permitted" | "unconfirmed" | "unknown";
 
 export interface Campsite {
   id: string;
@@ -66,6 +67,8 @@ export interface CampsiteAttributes {
   best_season: Season[];
   bugs_level: BugsLevel;
   noise_level: NoiseLevel;
+  legal_status: LegalStatusType;
+  legal_note: string;
 }
 
 export interface CampsiteWithAttributes extends Campsite {

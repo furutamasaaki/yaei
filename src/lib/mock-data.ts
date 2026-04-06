@@ -1,4 +1,4 @@
-import type { CampsiteWithAttributes, CampsiteType, CampsiteStatus, DirectFireType, HammockType, CarAccessType, ToiletType, WaterSourceType, TrashDisposalType, SignalStrength, StarGazingType, BugsLevel, NoiseLevel, Season } from "@/types/campsite";
+import type { CampsiteWithAttributes, CampsiteType, CampsiteStatus, DirectFireType, HammockType, CarAccessType, ToiletType, WaterSourceType, TrashDisposalType, SignalStrength, StarGazingType, BugsLevel, NoiseLevel, Season, LegalStatusType } from "@/types/campsite";
 
 interface SpotInput {
   id: string;
@@ -40,6 +40,8 @@ interface SpotInput {
     season: Season[];
     bugs: BugsLevel;
     noise: NoiseLevel;
+    legal?: LegalStatusType;
+    legalNote?: string;
   };
 }
 
@@ -59,6 +61,8 @@ function buildSpot(s: SpotInput): CampsiteWithAttributes {
       signal_softbank: s.attr.sb, solo_friendly: s.attr.solo, family_friendly: s.attr.family,
       can_swim: s.attr.swim, fishing: s.attr.fish, star_gazing: s.attr.star,
       best_season: s.attr.season, bugs_level: s.attr.bugs, noise_level: s.attr.noise,
+      legal_status: s.attr.legal || (s.type === "managed" ? "authorized" : s.type === "free" ? "public_riverbed" : s.type === "yaei" ? "national_forest" : "unconfirmed"),
+      legal_note: s.attr.legalNote || "",
     },
   };
 }

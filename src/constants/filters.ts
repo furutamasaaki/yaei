@@ -83,6 +83,28 @@ export const SEASON_LABELS = {
   winter: "冬",
 } as const;
 
+export const LEGAL_STATUS_LABELS = {
+  authorized: "管理キャンプ場",
+  public_riverbed: "河川敷（自由使用）",
+  national_forest: "国有林野営場",
+  natural_park_regular: "自然公園（普通地域）",
+  natural_park_special: "自然公園（指定地）",
+  private_permitted: "私有地（許可済み）",
+  unconfirmed: "未確認",
+  unknown: "不明",
+} as const;
+
+export const LEGAL_STATUS_DESCRIPTIONS = {
+  authorized: "正式に許可・管理されたキャンプ場です。安心してご利用いただけます。",
+  public_riverbed: "河川法に基づく自由使用が認められた河川敷です。自治体の条例により制限がある場合があります。",
+  national_forest: "林野庁が「レクリエーションの森」として指定した国有林内の野営場です。",
+  natural_park_regular: "自然公園法の普通地域に位置し、特別な規制はありません。ただし環境への配慮が必要です。",
+  natural_park_special: "自然公園法の特別地域内です。指定されたテント場以外でのテント泊は法律で禁止されています（違反: 6ヶ月以下の懲役または50万円以下の罰金）。",
+  private_permitted: "土地所有者の許可を得て利用可能な場所です。許可条件を確認してください。",
+  unconfirmed: "法的な利用可否が未調査です。利用前に自治体や土地管理者に確認することをお勧めします。",
+  unknown: "法的ステータスに関する情報がありません。",
+} as const;
+
 export const REPORT_TYPE_LABELS = {
   road_condition: "道路状況",
   crowding: "混雑状況",

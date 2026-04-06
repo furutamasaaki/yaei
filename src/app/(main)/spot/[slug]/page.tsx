@@ -4,7 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import AttributeGrid from "@/components/spot/AttributeGrid";
 import SpotMap from "@/components/spot/SpotMap";
 import SpotActions from "@/components/spot/SpotActions";
-import { CAMPSITE_TYPE_LABELS } from "@/constants/filters";
+import { CAMPSITE_TYPE_LABELS, LEGAL_STATUS_LABELS, LEGAL_STATUS_DESCRIPTIONS } from "@/constants/filters";
 import { MOCK_SPOTS } from "@/lib/mock-data";
 import type { Metadata } from "next";
 
@@ -278,6 +278,44 @@ export default async function SpotPage({ params }: SpotPageProps) {
               </p>
             </div>
           )}
+
+          {/* 法的ステータス */}
+          {attributes?.legal_status && attributes.legal_status !== "unknown" && (() => {
+            const statusColors: Record<string, string> = {
+              authorized: "border-yaei-green/20 bg-yaei-green/5",
+              public_riverbed: "border-yaei-green/20 bg-yaei-green/5",
+              national_forest: "border-yaei-green/20 bg-yaei-green/5",
+              natural_park_regular: "border-yaei-gold/20 bg-yaei-gold/5",
+              natural_park_special: "border-red-500/30 bg-red-500/5",
+              private_permitted: "border-yaei-green/20 bg-yaei-green/5",
+              unconfirmed: "border-yaei-gold/20 bg-yaei-gold/5",
+              unknown: "border-yaei-green/10 bg-yaei-surface",
+            };
+            const iconMap: Record<string, string> = {
+              authorized: "✓", public_riverbed: "✓", national_forest: "✓",
+              natural_park_regular: "△", natural_park_special: "⚠",
+              private_permitted: "✓", unconfirmed: "△", unknown: "？",
+            };
+            const status = attributes.legal_status as keyof typeof LEGAL_STATUS_LABELS;
+            return (
+              <div className={`rounded-lg p-4 border ${statusColors[status]}`}>
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-base">{iconMap[status]}</span>
+                  <h3 className="text-sm font-bold text-yaei-text">
+                    {LEGAL_STATUS_LABELS[status]}
+                  </h3>
+                </div>
+                <p className="text-xs text-yaei-text-secondary leading-relaxed">
+                  {LEGAL_STATUS_DESCRIPTIONS[status]}
+                </p>
+                {attributes.legal_note && (
+                  <p className="text-xs text-yaei-text mt-2 pt-2 border-t border-yaei-green/10">
+                    {attributes.legal_note}
+                  </p>
+                )}
+              </div>
+            );
+          })()}
 
           {/* 基本情報カード */}
           <div className="bg-yaei-surface border border-yaei-green/10 rounded-lg p-5">

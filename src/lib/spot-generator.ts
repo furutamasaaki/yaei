@@ -1,4 +1,4 @@
-import type { CampsiteWithAttributes, CampsiteType, DirectFireType, HammockType, CarAccessType, ToiletType, WaterSourceType, TrashDisposalType, SignalStrength, StarGazingType, BugsLevel, NoiseLevel, Season } from "@/types/campsite";
+import type { CampsiteWithAttributes, CampsiteType, DirectFireType, HammockType, CarAccessType, ToiletType, WaterSourceType, TrashDisposalType, SignalStrength, StarGazingType, BugsLevel, NoiseLevel, Season, LegalStatusType } from "@/types/campsite";
 
 // 疑似乱数（シード付きで再現性を確保）
 function seededRandom(seed: number) {
@@ -446,6 +446,17 @@ export function generateSpots(startId: number, count: number): CampsiteWithAttri
         best_season: bestSeason,
         bugs_level: pickWeighted(bugsOptions, rand),
         noise_level: pickWeighted(noiseOptions, rand),
+        legal_status: pickWeighted<LegalStatusType>(
+          campType === "managed"
+            ? [{ v: "authorized", w: 80 }, { v: "private_permitted", w: 15 }, { v: "unknown", w: 5 }]
+            : campType === "free"
+              ? [{ v: "public_riverbed", w: 35 }, { v: "authorized", w: 25 }, { v: "national_forest", w: 15 }, { v: "natural_park_regular", w: 10 }, { v: "unconfirmed", w: 10 }, { v: "unknown", w: 5 }]
+              : campType === "yaei"
+                ? [{ v: "national_forest", w: 30 }, { v: "public_riverbed", w: 20 }, { v: "natural_park_regular", w: 15 }, { v: "natural_park_special", w: 10 }, { v: "unconfirmed", w: 15 }, { v: "unknown", w: 10 }]
+                : [{ v: "unconfirmed", w: 40 }, { v: "natural_park_regular", w: 15 }, { v: "natural_park_special", w: 10 }, { v: "public_riverbed", w: 15 }, { v: "unknown", w: 20 }],
+          rand
+        ),
+        legal_note: "",
       },
     };
 

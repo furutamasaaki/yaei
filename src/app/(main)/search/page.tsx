@@ -42,6 +42,7 @@ function SearchContent() {
     noise_level: searchParams.get("noise_level") || "",
     can_swim: searchParams.get("can_swim") === "true",
     fishing: searchParams.get("fishing") === "true",
+    legal_status: searchParams.get("legal_status") || "",
   };
 
   const [filters, setFilters] = useState<FilterState>(initialFilters);
@@ -76,6 +77,7 @@ function SearchContent() {
     if (filters.noise_level) result = result.filter((s) => s.attributes?.noise_level === filters.noise_level);
     if (filters.can_swim) result = result.filter((s) => s.attributes?.can_swim);
     if (filters.fishing) result = result.filter((s) => s.attributes?.fishing);
+    if (filters.legal_status) result = result.filter((s) => s.attributes?.legal_status === filters.legal_status);
 
     return result;
   }, [q, filters]);

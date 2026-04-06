@@ -8,6 +8,7 @@ import {
   SIGNAL_LABELS,
   STAR_GAZING_LABELS,
   NOISE_LEVEL_LABELS,
+  LEGAL_STATUS_LABELS,
 } from "@/constants/filters";
 import { PREFECTURES, REGIONS } from "@/constants/prefectures";
 
@@ -25,6 +26,7 @@ export interface FilterState {
   noise_level: string;
   can_swim: boolean;
   fishing: boolean;
+  legal_status: string;
 }
 
 export const defaultFilters: FilterState = {
@@ -41,6 +43,7 @@ export const defaultFilters: FilterState = {
   noise_level: "",
   can_swim: false,
   fishing: false,
+  legal_status: "",
 };
 
 interface FilterSidebarProps {
@@ -264,6 +267,24 @@ export default function FilterSidebar({
                     active={filters.noise_level === value}
                     onClick={() =>
                       updateFilter("noise_level", filters.noise_level === value ? "" : value)
+                    }
+                  />
+                ))}
+            </div>
+          </FilterSection>
+
+          {/* 法的ステータス */}
+          <FilterSection title="法的ステータス">
+            <div className="flex flex-wrap gap-2">
+              {Object.entries(LEGAL_STATUS_LABELS)
+                .filter(([k]) => k !== "unknown")
+                .map(([value, label]) => (
+                  <FilterChip
+                    key={value}
+                    label={label}
+                    active={filters.legal_status === value}
+                    onClick={() =>
+                      updateFilter("legal_status", filters.legal_status === value ? "" : value)
                     }
                   />
                 ))}
