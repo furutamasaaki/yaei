@@ -32,6 +32,7 @@ function SearchContent() {
     prefecture: searchParams.get("prefecture") || "",
     type: searchParams.get("type") || "",
     is_free: searchParams.get("is_free") === "true",
+    has_reservation: searchParams.get("has_reservation") === "true",
     direct_fire: searchParams.get("direct_fire") || "",
     car_access: searchParams.get("car_access") || "",
     solo_friendly: searchParams.get("solo_friendly") === "true",
@@ -42,6 +43,7 @@ function SearchContent() {
     noise_level: searchParams.get("noise_level") || "",
     can_swim: searchParams.get("can_swim") === "true",
     fishing: searchParams.get("fishing") === "true",
+    onsen_nearby: searchParams.get("onsen_nearby") === "true",
     legal_status: searchParams.get("legal_status") || "",
   };
 
@@ -64,6 +66,7 @@ function SearchContent() {
     if (filters.prefecture) result = result.filter((s) => s.prefecture === filters.prefecture);
     if (filters.type) result = result.filter((s) => s.campsite_type === filters.type);
     if (filters.is_free) result = result.filter((s) => s.is_free);
+    if (filters.has_reservation) result = result.filter((s) => !!s.reservation_url);
     if (filters.direct_fire) result = result.filter((s) => s.attributes?.direct_fire === filters.direct_fire);
     if (filters.car_access) result = result.filter((s) => s.attributes?.car_access === filters.car_access);
     if (filters.solo_friendly) result = result.filter((s) => s.attributes?.solo_friendly);
@@ -74,6 +77,7 @@ function SearchContent() {
     if (filters.noise_level) result = result.filter((s) => s.attributes?.noise_level === filters.noise_level);
     if (filters.can_swim) result = result.filter((s) => s.attributes?.can_swim);
     if (filters.fishing) result = result.filter((s) => s.attributes?.fishing);
+    if (filters.onsen_nearby) result = result.filter((s) => s.attributes?.nearest_onsen_min != null && s.attributes.nearest_onsen_min <= 30);
     if (filters.legal_status) result = result.filter((s) => s.attributes?.legal_status === filters.legal_status);
 
     return result;

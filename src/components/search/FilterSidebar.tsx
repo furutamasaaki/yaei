@@ -5,6 +5,7 @@ import {
   CAMPSITE_TYPE_LABELS,
   DIRECT_FIRE_LABELS,
   CAR_ACCESS_LABELS,
+  HAMMOCK_LABELS,
   SIGNAL_LABELS,
   STAR_GAZING_LABELS,
   NOISE_LEVEL_LABELS,
@@ -16,6 +17,7 @@ export interface FilterState {
   prefecture: string;
   type: string;
   is_free: boolean;
+  has_reservation: boolean;
   direct_fire: string;
   car_access: string;
   solo_friendly: boolean;
@@ -26,6 +28,7 @@ export interface FilterState {
   noise_level: string;
   can_swim: boolean;
   fishing: boolean;
+  onsen_nearby: boolean;
   legal_status: string;
 }
 
@@ -33,6 +36,7 @@ export const defaultFilters: FilterState = {
   prefecture: "",
   type: "",
   is_free: false,
+  has_reservation: false,
   direct_fire: "",
   car_access: "",
   solo_friendly: false,
@@ -43,6 +47,7 @@ export const defaultFilters: FilterState = {
   noise_level: "",
   can_swim: false,
   fishing: false,
+  onsen_nearby: false,
   legal_status: "",
 };
 
@@ -150,13 +155,20 @@ export default function FilterSidebar({
             </div>
           </FilterSection>
 
-          {/* 料金 */}
-          <FilterSection title="料金">
-            <FilterToggle
-              label="無料のみ"
-              checked={filters.is_free}
-              onChange={(v) => updateFilter("is_free", v)}
-            />
+          {/* 料金・予約 */}
+          <FilterSection title="料金・予約">
+            <div className="space-y-2">
+              <FilterToggle
+                label="無料のみ"
+                checked={filters.is_free}
+                onChange={(v) => updateFilter("is_free", v)}
+              />
+              <FilterToggle
+                label="WEB予約可"
+                checked={filters.has_reservation}
+                onChange={(v) => updateFilter("has_reservation", v)}
+              />
+            </div>
           </FilterSection>
 
           {/* 直火 */}
@@ -193,6 +205,24 @@ export default function FilterSidebar({
             </div>
           </FilterSection>
 
+          {/* ハンモック */}
+          <FilterSection title="ハンモック">
+            <div className="flex flex-wrap gap-2">
+              {Object.entries(HAMMOCK_LABELS)
+                .filter(([k]) => k !== "unknown")
+                .map(([value, label]) => (
+                  <FilterChip
+                    key={value}
+                    label={label}
+                    active={filters.hammock === value}
+                    onClick={() =>
+                      updateFilter("hammock", filters.hammock === value ? "" : value)
+                    }
+                  />
+                ))}
+            </div>
+          </FilterSection>
+
           {/* スタイル */}
           <FilterSection title="スタイル">
             <div className="space-y-2">
@@ -215,6 +245,11 @@ export default function FilterSidebar({
                 label="釣り可"
                 checked={filters.fishing}
                 onChange={(v) => updateFilter("fishing", v)}
+              />
+              <FilterToggle
+                label="温泉近い（30分以内）"
+                checked={filters.onsen_nearby}
+                onChange={(v) => updateFilter("onsen_nearby", v)}
               />
             </div>
           </FilterSection>

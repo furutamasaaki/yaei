@@ -86,6 +86,12 @@ export default function SpotCard({ spot, compact = false }: SpotCardProps) {
             {spot.attributes.car_access === "drive_in" && (
               <AttributeTag label="乗り入れ可" positive />
             )}
+            {spot.attributes.pet_allowed && (
+              <AttributeTag label="ペットOK" positive />
+            )}
+            {spot.attributes.hammock === "allowed" && (
+              <AttributeTag label="ハンモック可" positive />
+            )}
             {spot.attributes.star_gazing === "excellent" && (
               <AttributeTag label="星空" positive />
             )}
@@ -95,6 +101,15 @@ export default function SpotCard({ spot, compact = false }: SpotCardProps) {
                 positive={spot.attributes.signal_docomo === "strong"}
               />
             )}
+          </div>
+        )}
+
+        {/* 予約ボタン */}
+        {spot.reservation_url && (
+          <div className="mt-3">
+            <span className="block w-full bg-yaei-gold/10 border border-yaei-gold/30 text-yaei-gold text-xs font-bold py-2 rounded text-center">
+              予約サイトあり →
+            </span>
           </div>
         )}
       </div>

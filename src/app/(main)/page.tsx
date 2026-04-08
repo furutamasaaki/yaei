@@ -8,7 +8,7 @@ const POPULAR_TAGS = [
   { label: "完ソロ", href: "/search?solo_friendly=true" },
   { label: "無料", href: "/search?is_free=true" },
   { label: "車乗り入れ可", href: "/search?car_access=drive_in" },
-  { label: "温泉近い", href: "/search" },
+  { label: "温泉近い", href: "/search?onsen_nearby=true" },
   { label: "星がきれい", href: "/search?star_gazing=excellent" },
   { label: "野営場", href: "/search?type=yaei" },
   { label: "ハンモック可", href: "/search?hammock=allowed" },
