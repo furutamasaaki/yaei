@@ -14,23 +14,33 @@ const POPULAR_TAGS = [
   { label: "ハンモック可", href: "/search?hammock=allowed" },
 ];
 
+// 実データから統計を算出
+const totalSpots = MOCK_SPOTS.length;
+const prefectures = new Set(MOCK_SPOTS.map((s) => s.prefecture));
+const freeOrYaei = MOCK_SPOTS.filter(
+  (s) => s.is_free || s.campsite_type === "yaei" || s.campsite_type === "wild"
+).length;
+
 const STATS = [
-  { value: "3,200+", label: "登録スポット" },
-  { value: "47", label: "都道府県" },
-  { value: "1,500+", label: "野営場・無料" },
-  { value: "8,000+", label: "レビュー" },
+  { value: String(totalSpots), label: "登録スポット" },
+  { value: String(prefectures.size), label: "都道府県" },
+  { value: String(freeOrYaei), label: "野営場・無料" },
+  { value: "0", label: "レビュー" },
 ];
 
-const FEATURED_AREAS = [
-  { name: "北海道", count: 420, href: "/search?prefecture=北海道" },
-  { name: "長野県", count: 380, href: "/search?prefecture=長野県" },
-  { name: "山梨県", count: 290, href: "/search?prefecture=山梨県" },
-  { name: "静岡県", count: 250, href: "/search?prefecture=静岡県" },
-  { name: "岐阜県", count: 180, href: "/search?prefecture=岐阜県" },
-  { name: "新潟県", count: 170, href: "/search?prefecture=新潟県" },
-  { name: "奈良県", count: 130, href: "/search?prefecture=奈良県" },
-  { name: "高知県", count: 120, href: "/search?prefecture=高知県" },
-];
+// 都道府県別件数を集計し、上位8件を表示
+const prefCountMap: Record<string, number> = {};
+MOCK_SPOTS.forEach((s) => {
+  prefCountMap[s.prefecture] = (prefCountMap[s.prefecture] || 0) + 1;
+});
+const FEATURED_AREAS = Object.entries(prefCountMap)
+  .sort((a, b) => b[1] - a[1])
+  .slice(0, 8)
+  .map(([name, count]) => ({
+    name,
+    count,
+    href: `/search?prefecture=${name}`,
+  }));
 
 export default function HomePage() {
   return (

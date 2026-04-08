@@ -55,14 +55,11 @@ function SearchContent() {
     let result = MOCK_SPOTS;
 
     if (q) {
-      const query = q.toLowerCase();
-      result = result.filter(
-        (s) =>
-          s.name.toLowerCase().includes(query) ||
-          s.name_kana.includes(query) ||
-          s.prefecture.includes(query) ||
-          s.city.includes(query)
-      );
+      const terms = q.toLowerCase().split(/\s+/).filter(Boolean);
+      result = result.filter((s) => {
+        const haystack = `${s.name} ${s.name_kana} ${s.prefecture} ${s.city} ${s.description}`.toLowerCase();
+        return terms.every((term) => haystack.includes(term));
+      });
     }
     if (filters.prefecture) result = result.filter((s) => s.prefecture === filters.prefecture);
     if (filters.type) result = result.filter((s) => s.campsite_type === filters.type);

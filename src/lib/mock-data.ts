@@ -50,7 +50,7 @@ function buildSpot(s: SpotInput): CampsiteWithAttributes {
     id: s.id, name: s.name, name_kana: s.kana, slug: s.slug, description: s.desc,
     latitude: s.lat, longitude: s.lng, prefecture: s.pref, city: s.city, address: s.address,
     access_description: s.access, elevation_m: s.elev, campsite_type: s.type, is_free: s.free,
-    price_range: s.price, official_url: s.url || null, reservation_url: s.reserveUrl || null, status: "active" as CampsiteStatus, source: "manual",
+    price_range: s.free ? "無料" : s.price, official_url: s.url || null, reservation_url: s.reserveUrl || null, status: "active" as CampsiteStatus, source: "manual",
     verified_at: null, created_at: "2024-01-01T00:00:00Z", updated_at: "2024-01-01T00:00:00Z", created_by: null,
     attributes: {
       id: `a${s.id}`, campsite_id: s.id, direct_fire: s.attr.fire, hammock: s.attr.hammock,

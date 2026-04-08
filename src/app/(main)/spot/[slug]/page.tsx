@@ -268,14 +268,16 @@ export default async function SpotPage({ params }: SpotPageProps) {
                   href={spot.official_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block w-full bg-yaei-gold hover:bg-yaei-gold-hover text-yaei-dark font-bold py-3 rounded-lg text-center transition-colors"
+                  className="block w-full border border-yaei-gold/50 text-yaei-gold hover:bg-yaei-gold/10 font-bold py-3 rounded-lg text-center transition-colors"
                 >
-                  公式サイトで予約
+                  公式サイトを見る
                 </a>
               ) : null}
-              <p className="text-xs text-yaei-text-secondary mt-2 text-center">
-                外部サイトに移動します
-              </p>
+              {(spot.reservation_url || spot.official_url) && (
+                <p className="text-xs text-yaei-text-secondary mt-2 text-center">
+                  外部サイトに移動します
+                </p>
+              )}
             </div>
           )}
 
